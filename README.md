@@ -1,16 +1,6 @@
 ---
 title: The chicken/egg dilema of EV adoption in Germany
-author: Henry Zehe
-pubDatetime: 2023-09-07T10:20:24Z
-postSlug: blog-introduction
-featured: true
-draft: false
-tags:
-  - about
-  - interests
-  - skills
-  - social-science
-  - society
+effectiveDate: 2023-09-07T10:20:24Z
 
 description:
     [](https://doi.org/10.1016/j.retrec.2020.100837)
