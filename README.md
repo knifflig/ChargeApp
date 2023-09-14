@@ -14,11 +14,11 @@ tags:
 
 description:
     [](https://doi.org/10.1016/j.retrec.2020.100837)
-  charging infrastructure
+    charging infrastructure
 ---
 
 ## Introduction
-- A major part of energy system transformation is the transition of personal transport towards electric vehicles (EV) 
+- A major part of energy system transformation is the transition of personal transport towards electric vehicles (EV)
 - Meanwhile this faces a classical chicken or egg problem as market acceptance is based on available (public) charging infrastructure while efficient allocation of resccources to those infrastructure depends on enough users
 - In Germany a great part of the populations have not the possiblity to install private charging devieces.
 - Lots of people dont life in houses with carport or garages and even if a major share does not own their living property
