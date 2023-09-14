@@ -89,7 +89,7 @@ class StationsFinder:
             print(f"An error occurred: {error}")
             return None
 
-def stations(object_ids=None, **kwargs):
+def stations_find(object_ids=None, **kwargs):
     """
     Function for retrieving stations
     """
@@ -138,7 +138,7 @@ def filter_stations(polygon, data_list):
 
 if __name__ == '__main__':
     try:
-        ALL_STATIONS = stations()
+        ALL_STATIONS = stations_find()
         print("All station data:")
         print(ALL_STATIONS)
 

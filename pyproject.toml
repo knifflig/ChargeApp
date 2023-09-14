@@ -17,6 +17,7 @@ requests = "^2.31.0"
 matplotlib = "^3.7.3"
 shapely = "^2.0.1"
 plotly = "^5.16.1"
+pandas = "^2.1.0"
 
 [tool.poetry.group.dev.dependencies]
 jupyter = "^1.0.0"

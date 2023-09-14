@@ -1,3 +1,3 @@
 """stations loader"""
 
-from .stations_find import stations, filter_stations
+from .stations_find import stations_find, filter_stations
