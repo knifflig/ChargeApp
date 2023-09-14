@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "chargeapp"
+version = "0.1.0"
+description = ""
+authors = ["knifflig <knifflig.utopisch-0u@icloud.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [
+    {include = "stations_loader", from = "src"},
+    {include = "kreis_loader", from = "src"},
+    {include = "map_drawer", from = "src"}
+]
+
+[tool.poetry.dependencies]
+python = "3.10.13"
+requests = "^2.31.0"
+matplotlib = "^3.7.3"
+shapely = "^2.0.1"
+plotly = "^5.16.1"
+
+[tool.poetry.group.dev.dependencies]
+jupyter = "^1.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
