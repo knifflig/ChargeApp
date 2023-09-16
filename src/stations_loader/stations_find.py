@@ -63,6 +63,7 @@ class StationsFinder:
         params = self.default_params.copy()
         params['objectIds'] = object_ids
         params.update(kwargs)
+        print(params)
 
         try:
             response = requests.get(self.base_url, params=params, timeout=10.0)
@@ -102,7 +103,7 @@ def stations_find(object_ids=None, **kwargs):
 
 def filter_stations(polygon, data_list):
     """
-    Filters a list of dictionaries to keep only specific keys ('OBJECTID', 'Breitengrad', 'Längengrad') and
+    Filters a list of dictionaries to keep all keys and
     checks if the coordinates are within the given polygon.
     
     Parameters:
@@ -114,26 +115,20 @@ def filter_stations(polygon, data_list):
     """
     # Create a Shapely Polygon object from the 'rings' coordinates
     poly = Polygon(polygon['rings'][0])
-    
-    # Define the keys we want to keep
-    keys_to_keep = ['OBJECTID', 'Breitengrad', 'Längengrad']
-    
+
     # Initialize an empty list to store the filtered dictionaries
     filtered_list = []
-    
+
     # Loop through the original data list
     for entry in data_list:
         # Create a Point object from the coordinates
         point = Point(entry['Längengrad'], entry['Breitengrad'])
-        
+
         # Check if the point is within the polygon
         if point.within(poly):
-            # Create a filtered dictionary containing only the keys to keep
-            filtered_dict = {key: entry[key] for key in keys_to_keep}
-            
-            # Append the filtered dictionary to the filtered list
-            filtered_list.append(filtered_dict)
-    
+            # Since we are keeping all keys, we can directly append the original entry
+            filtered_list.append(entry)
+
     return filtered_list
 
 if __name__ == '__main__':

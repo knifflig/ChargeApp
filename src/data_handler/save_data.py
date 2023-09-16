@@ -1,5 +1,4 @@
 import sqlite3
-import pandas as pd
 
 class SQLite:
     def __init__(self, db_name):
@@ -9,7 +8,7 @@ class SQLite:
 
     def __enter__(self):
         self.conn = sqlite3.connect(self.db_name)
-        self.cursor = self.conn.cursor()
+        self.cursor = self.conn.cursor() 
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
