@@ -63,7 +63,6 @@ class StationsFinder:
         params = self.default_params.copy()
         params['objectIds'] = object_ids
         params.update(kwargs)
-        print(params)
 
         try:
             response = requests.get(self.base_url, params=params, timeout=10.0)

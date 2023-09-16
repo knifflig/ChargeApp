@@ -78,7 +78,7 @@ class ArcGISAPI:
             response.raise_for_status()
 
             data_json = json.loads(response.text)
-      
+
             if "error" in data_json:
                 print(data_json)
                 return None
@@ -115,11 +115,11 @@ def get_envelope(polygon):
     # Loop through the points to update min and max coordinates
     for ring in polygon['rings']:
         for point in ring:
-            x, y = point
-            xmin = min(xmin, x)
-            ymin = min(ymin, y)
-            xmax = max(xmax, x)
-            ymax = max(ymax, y)
+            x_axis, y_axis = point
+            xmin = min(xmin, x_axis)
+            ymin = min(ymin, y_axis)
+            xmax = max(xmax, x_axis)
+            ymax = max(ymax, y_axis)
 
     # Create and return the bounding rectangle
     #geometry = {xmin, ymin, xmax, ymax}
