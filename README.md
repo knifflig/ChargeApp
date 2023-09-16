@@ -14,9 +14,6 @@ description:
 - Lots of people dont life in houses with carport or garages and even if a major share does not own their living property
 - For making EV a viable alternative germany needs enough public charging stations
 
-## Public chargin stations in germany
+## Public charging stations in germany
 
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <div id="cd52e831-399a-403d-9bb2-0c56214b1d38" style="height: 100%; width: 100%;" class="plotly-graph-div"></div>
-	<script type="text/javascript" src="plot.html"></script>
-
+- 
