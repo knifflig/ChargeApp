@@ -18,6 +18,7 @@ requests = "^2.31.0"
 shapely = "^2.0.1"
 plotly = "^5.16.1"
 pandas = "^2.1.0"
+ipyleaflet = "^0.17.4"
 
 
 [tool.poetry.group.dev.dependencies]

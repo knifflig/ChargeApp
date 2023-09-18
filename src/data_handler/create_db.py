@@ -7,7 +7,7 @@ and charging stations, storing them in an SQLite database.
 import json
 from kreis_loader import get_envelope, get_kreise
 from stations_loader import stations_find, filter_stations
-from data_handler import SQLite
+from data_handler import SQLite, SQLiteFetcher
 
 def main():
     """Main function that handles the data loading and processing."""
@@ -173,6 +173,24 @@ def handle_station_data(stations_filtered, kreis_id):
             },
             strict=False
         )
+
+for ID in list(range(400)):
+
+    with SQLiteFetcher('../../ChargeApp.db', kreisid=ID) as fetcher:
+        kreis = fetcher.fetch_rows('kreis_table')[0]
+        stations = fetcher.fetch_rows('stations')
+
+    with SQLite('../../ChargeApp.db') as db_conn:
+        db_conn.add_column("kreis_table", "stations", "INT")
+
+        db_conn.insert_data(
+                table_name="kreis_table",
+                key_column="KREISID",
+                data={"stations": len(stations)},
+                key_value=ID
+            )
+
+
 
 if __name__ == "__main__":
     main()
