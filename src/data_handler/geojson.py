@@ -1,7 +1,8 @@
 """Module for converting kreis and geo data to GeoJSON format."""
 
-from data_handler import SQLiteFetcher
+import math
 from ipyleaflet import GeoJSON
+from data_handler import SQLiteFetcher
 
 class GeoJsonFeatureCollection:
     """Handles GeoJsonFeatureCollection"""
@@ -54,82 +55,9 @@ class GeoJsonFeatureCollection:
                 print(f"An error occurred: {error}")
         self.features = filtered_features
 
-    def calculate_opacities(self):
-        """Calculate and assign opacity values to each feature based on its properties.
-
-        This method updates each feature in self.features with new properties that
-        indicate the opacity of the feature based on 'stations' and 'ewz_sta'.
-
-        Raises:
-            Exception: An error occurred during the calculation of opacities.
-        """
-        min_stations = min(
-            [feature['properties']['stations'] for feature in self.features]
-            )
-        max_stations = max(
-            [feature['properties']['stations'] for feature in self.features]
-            )
-        min_ewz_sta = min(
-            [feature['properties']['ewz_sta'] for feature in self.features
-             if feature['properties']['ewz_sta'] is not None]
-            )
-        max_ewz_sta = max(
-            [feature['properties']['ewz_sta'] for feature in self.features
-             if feature['properties']['ewz_sta'] is not None]
-            )
-
-        for feature in self.features:
-            try:
-                stations = feature['properties']['stations']
-                ewz_sta = feature['properties']['ewz_sta']
-                feature['properties']['opac_sta'] = GeoJsonHandler.\
-                    lerp_opac(min_stations, max_stations, stations, reverse=False)
-                feature['properties']['opac_ewz_sta'] = GeoJsonHandler.\
-                    lerp_opac(min_ewz_sta, max_ewz_sta, ewz_sta, reverse=True)
-            except Exception as error:# pylint: disable=W0718
-                print(f"An error occurred: {error}")
-
-    def export_layer(self,
-                     name="Layer", style=None,
-                     hover=None, point_style=None, style_callback=None,
-                     on_click=None, on_hover=None):
-        """
-        Exports the feature collection as an ipyleaflet GeoJSON object.
-
-        Parameters:
-            name (str): Name of the layer.
-            style (dict): Base style for the layer.
-            hover (dict): Style to be applied on hover.
-            point_style (dict): Style for point features.
-            style_callback (callable): Function to compute the style.
-            on_click (callable): Function to be called when a feature is clicked.
-            on_hover (callable): Function to be called when mouse hovers over a feature.
-
-        Returns:
-            ipyleaflet.GeoJSON: The GeoJSON layer.
-        """
-        layer = GeoJSON(
-            data=self.export_geojson(),
-            name=name,
-            style=style,
-            hover_style=hover,
-            point_style=point_style,
-            style_callback=style_callback,
-            on_click=on_click,
-            on_hover=on_hover
-        )
-        return layer
-
-class GeoJsonHandler:
-    """Handles the conversion and manipulation of geoJSON data."""
-
-    def __init__(self, min_kreisid, max_kreisid):
-        self.min_kreisid = min_kreisid
-        self.max_kreisid = max_kreisid
-
     @staticmethod
-    def lerp_opac(minval, maxval, val, reverse=False):
-        """Linearly interpolate opacity based on a given value within a range.
+    def set_opac(minval, maxval, val, reverse=False, base=None):
+        """Interpolate opacity based on a given value within a range.
 
         This method calculates the relative opacity of a value within a specified
         range (minval to maxval). Optionally, the opacity can be reversed.
@@ -153,10 +81,116 @@ class GeoJsonHandler:
             return 0 if not reverse else 1
         if maxval == minval or val < minval or val > maxval:
             return None
-        rel_val = (val - minval) / (maxval - minval)
-        if reverse:
-            rel_val = 1 - rel_val
-        return rel_val
+
+        try:
+            if base is not None:
+                log_min = math.log(minval + 1, base)
+                log_max = math.log(maxval + 1, base)
+                log_value = math.log(val + 1, base)
+                rel_val = (log_value - log_min) / (log_max - log_min)
+
+            else:
+                rel_val = (val - minval) / (maxval - minval)
+
+            if reverse:
+                rel_val = 1 - rel_val
+
+            return rel_val
+
+        except Exception as error:# pylint: disable=W0718
+            print(f"An error occurred: {error}")
+
+    def calculate_opacities(self):
+        """Calculate and assign opacity values to each feature based on its properties.
+
+        This method updates each feature in self.features with new properties that
+        indicate the opacity of the feature based on 'stations' and 'ewz_sta'.
+
+        Raises:
+            Exception: An error occurred during the calculation of opacities.
+        """
+        min_ewz = min(
+            [feature['properties']['ewz'] for feature in self.features
+                if feature['properties']['ewz'] is not None]
+            )
+        max_ewz = max(
+            [feature['properties']['ewz'] for feature in self.features
+                if feature['properties']['ewz'] is not None]
+            )
+        min_sta = min(
+            [feature['properties']['stations'] for feature in self.features
+                if feature['properties']['stations'] is not None]
+            )
+        max_sta = max(
+            [feature['properties']['stations'] for feature in self.features
+                if feature['properties']['stations'] is not None]
+            )
+        min_ewz_sta = min(
+            [feature['properties']['ewz_sta'] for feature in self.features
+                if feature['properties']['ewz_sta'] is not None]
+            )
+        max_ewz_sta = max(
+            [feature['properties']['ewz_sta'] for feature in self.features
+                if feature['properties']['ewz_sta'] is not None]
+            )
+
+        for feature in self.features:
+            try:
+                ewz = feature['properties']['ewz']
+                stations = feature['properties']['stations']
+                ewz_sta = feature['properties']['ewz_sta']
+
+                feature['properties']['opac_ewz'] =\
+                    self.set_opac(min_ewz, max_ewz, ewz, base=10)
+                feature['properties']['opac_sta'] =\
+                    self.set_opac(min_sta, max_sta, stations, base=10)
+                feature['properties']['opac_ewz_sta'] =\
+                    self.set_opac(min_ewz_sta, max_ewz_sta, ewz_sta, reverse=True, base=10)
+
+            except Exception as error:# pylint: disable=W0718
+                print(f"An error occurred: {error}")
+
+    def export_layer(self,
+                     name="Layer", style=None,
+                     hover=None, point_style=None, style_callback=None,
+                     on_click=None, on_hover=None):
+        """
+        Exports the feature collection as an ipyleaflet GeoJSON object.
+
+        Parameters:
+            name (str): Name of the layer.
+            style (dict): Base style for the layer.
+            hover (dict): Style to be applied on hover.
+            point_style (dict): Style for point features.
+            style_callback (callable): Function to compute the style.
+            on_click (callable): Function to be called when a feature is clicked.
+            on_hover (callable): Function to be called when mouse hovers over a feature.
+
+        Returns:
+            ipyleaflet.GeoJSON: The GeoJSON layer.
+        """
+        layer_kwargs = {
+            "data": self.export_geojson(),
+            "name": name,
+            "style": style if style is not None else {},
+            "hover_style": hover if hover is not None else {},
+            "point_style": point_style if point_style is not None else {},
+        }
+        if callable(style_callback):
+            layer_kwargs['style_callback'] = style_callback
+        if callable(on_click):
+            layer_kwargs['on_click'] = on_click
+        if callable(on_hover):
+            layer_kwargs['on_hover'] = on_hover
+        layer = GeoJSON(**layer_kwargs)
+        return layer
+
+class GeoJsonHandler:
+    """Handles the conversion and manipulation of geoJSON data."""
+
+    def __init__(self, min_kreisid, max_kreisid):
+        self.min_kreisid = min_kreisid
+        self.max_kreisid = max_kreisid
 
     @staticmethod
     def fetch_data(kreis, geo):

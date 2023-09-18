@@ -1,0 +1,419 @@
+{
+  "version": "v1",
+  "config": {
+    "visState": {
+      "filters": [],
+      "layers": [
+        {
+          "id": "cvsj53h",
+          "type": "geojson",
+          "config": {
+            "dataId": "ChargeApp.geojson",
+            "label": "Citizen",
+            "color": [
+              179,
+              173,
+              158
+            ],
+            "highlightColor": [
+              252,
+              242,
+              26,
+              255
+            ],
+            "columns": {
+              "geojson": "_geojson"
+            },
+            "isVisible": false,
+            "visConfig": {
+              "opacity": 1,
+              "strokeOpacity": 0.8,
+              "thickness": 0.5,
+              "strokeColor": null,
+              "colorRange": {
+                "name": "ColorBrewer BuGn-6",
+                "type": "sequential",
+                "category": "ColorBrewer",
+                "colors": [
+                  "#edf8fb",
+                  "#ccece6",
+                  "#99d8c9",
+                  "#66c2a4",
+                  "#2ca25f",
+                  "#006d2c"
+                ],
+                "reversed": false
+              },
+              "strokeColorRange": {
+                "name": "Global Warming",
+                "type": "sequential",
+                "category": "Uber",
+                "colors": [
+                  "#5A1846",
+                  "#900C3F",
+                  "#C70039",
+                  "#E3611C",
+                  "#F1920E",
+                  "#FFC300"
+                ]
+              },
+              "radius": 20,
+              "sizeRange": [
+                0,
+                10
+              ],
+              "radiusRange": [
+                0,
+                50
+              ],
+              "heightRange": [
+                0,
+                500
+              ],
+              "elevationScale": 5,
+              "enableElevationZoomFactor": true,
+              "stroked": false,
+              "filled": true,
+              "enable3d": false,
+              "wireframe": false
+            },
+            "hidden": false,
+            "textLabel": [
+              {
+                "field": null,
+                "color": [
+                  255,
+                  255,
+                  255
+                ],
+                "size": 18,
+                "offset": [
+                  0,
+                  0
+                ],
+                "anchor": "start",
+                "alignment": "center"
+              }
+            ]
+          },
+          "visualChannels": {
+            "colorField": {
+              "name": "ewz",
+              "type": "integer"
+            },
+            "colorScale": "quantile",
+            "strokeColorField": null,
+            "strokeColorScale": "quantile",
+            "sizeField": null,
+            "sizeScale": "linear",
+            "heightField": null,
+            "heightScale": "linear",
+            "radiusField": null,
+            "radiusScale": "linear"
+          }
+        },
+        {
+          "id": "qautbq",
+          "type": "geojson",
+          "config": {
+            "dataId": "ChargeApp.geojson",
+            "label": "Stations",
+            "color": [
+              221,
+              178,
+              124
+            ],
+            "highlightColor": [
+              252,
+              242,
+              26,
+              255
+            ],
+            "columns": {
+              "geojson": "_geojson"
+            },
+            "isVisible": false,
+            "visConfig": {
+              "opacity": 1,
+              "strokeOpacity": 0.8,
+              "thickness": 0,
+              "strokeColor": [
+                105,
+                79,
+                214
+              ],
+              "colorRange": {
+                "name": "ColorBrewer Purples-6",
+                "type": "singlehue",
+                "category": "ColorBrewer",
+                "colors": [
+                  "#f2f0f7",
+                  "#dadaeb",
+                  "#bcbddc",
+                  "#9e9ac8",
+                  "#756bb1",
+                  "#54278f"
+                ]
+              },
+              "strokeColorRange": {
+                "name": "ColorBrewer Purples-6",
+                "type": "singlehue",
+                "category": "ColorBrewer",
+                "colors": [
+                  "#f2f0f7",
+                  "#dadaeb",
+                  "#bcbddc",
+                  "#9e9ac8",
+                  "#756bb1",
+                  "#54278f"
+                ]
+              },
+              "radius": 10,
+              "sizeRange": [
+                0,
+                10
+              ],
+              "radiusRange": [
+                0,
+                50
+              ],
+              "heightRange": [
+                0,
+                500
+              ],
+              "elevationScale": 5,
+              "enableElevationZoomFactor": true,
+              "stroked": false,
+              "filled": true,
+              "enable3d": false,
+              "wireframe": false
+            },
+            "hidden": false,
+            "textLabel": [
+              {
+                "field": null,
+                "color": [
+                  255,
+                  255,
+                  255
+                ],
+                "size": 18,
+                "offset": [
+                  0,
+                  0
+                ],
+                "anchor": "start",
+                "alignment": "center"
+              }
+            ]
+          },
+          "visualChannels": {
+            "colorField": {
+              "name": "stations",
+              "type": "integer"
+            },
+            "colorScale": "quantile",
+            "strokeColorField": null,
+            "strokeColorScale": "quantile",
+            "sizeField": null,
+            "sizeScale": "linear",
+            "heightField": null,
+            "heightScale": "linear",
+            "radiusField": null,
+            "radiusScale": "linear"
+          }
+        },
+        {
+          "id": "qm5ta5m",
+          "type": "geojson",
+          "config": {
+            "dataId": "ChargeApp.geojson",
+            "label": "Citizen per Station",
+            "color": [
+              237,
+              200,
+              0
+            ],
+            "highlightColor": [
+              252,
+              242,
+              26,
+              255
+            ],
+            "columns": {
+              "geojson": "_geojson"
+            },
+            "isVisible": true,
+            "visConfig": {
+              "opacity": 0.8,
+              "strokeOpacity": 0.8,
+              "thickness": 0.5,
+              "strokeColor": null,
+              "colorRange": {
+                "name": "ColorBrewer Greys-6",
+                "type": "singlehue",
+                "category": "ColorBrewer",
+                "colors": [
+                  "#252525",
+                  "#636363",
+                  "#969696",
+                  "#bdbdbd",
+                  "#d9d9d9",
+                  "#f7f7f7"
+                ],
+                "reversed": true
+              },
+              "strokeColorRange": {
+                "name": "Global Warming",
+                "type": "sequential",
+                "category": "Uber",
+                "colors": [
+                  "#5A1846",
+                  "#900C3F",
+                  "#C70039",
+                  "#E3611C",
+                  "#F1920E",
+                  "#FFC300"
+                ]
+              },
+              "radius": 10,
+              "sizeRange": [
+                0,
+                10
+              ],
+              "radiusRange": [
+                0,
+                50
+              ],
+              "heightRange": [
+                0,
+                500
+              ],
+              "elevationScale": 5,
+              "enableElevationZoomFactor": true,
+              "stroked": false,
+              "filled": true,
+              "enable3d": false,
+              "wireframe": false
+            },
+            "hidden": false,
+            "textLabel": [
+              {
+                "field": null,
+                "color": [
+                  255,
+                  255,
+                  255
+                ],
+                "size": 18,
+                "offset": [
+                  0,
+                  0
+                ],
+                "anchor": "start",
+                "alignment": "center"
+              }
+            ]
+          },
+          "visualChannels": {
+            "colorField": {
+              "name": "ewz_sta",
+              "type": "real"
+            },
+            "colorScale": "quantile",
+            "strokeColorField": null,
+            "strokeColorScale": "quantile",
+            "sizeField": null,
+            "sizeScale": "linear",
+            "heightField": null,
+            "heightScale": "linear",
+            "radiusField": null,
+            "radiusScale": "linear"
+          }
+        }
+      ],
+      "interactionConfig": {
+        "tooltip": {
+          "fieldsToShow": {
+            "ChargeApp.geojson": [
+              {
+                "name": "KREISID",
+                "format": null
+              },
+              {
+                "name": "ags",
+                "format": null
+              },
+              {
+                "name": "gen",
+                "format": null
+              },
+              {
+                "name": "bez",
+                "format": null
+              },
+              {
+                "name": "ewz",
+                "format": null
+              },
+              {
+                "name": "stations",
+                "format": null
+              },
+              {
+                "name": "ewz_sta",
+                "format": null
+              }
+            ]
+          },
+          "compareMode": false,
+          "compareType": "absolute",
+          "enabled": true
+        },
+        "brush": {
+          "size": 0.5,
+          "enabled": false
+        },
+        "geocoder": {
+          "enabled": false
+        },
+        "coordinate": {
+          "enabled": false
+        }
+      },
+      "layerBlending": "normal",
+      "splitMaps": [],
+      "animationConfig": {
+        "currentTime": null,
+        "speed": 1
+      }
+    },
+    "mapState": {
+      "bearing": 0,
+      "dragRotate": false,
+      "latitude": 51.420599976529864,
+      "longitude": 8.138499141463639,
+      "pitch": 0,
+      "zoom": 5.170330906704846,
+      "isSplit": false
+    },
+    "mapStyle": {
+      "styleType": "dark",
+      "topLayerGroups": {},
+      "visibleLayerGroups": {
+        "border": true,
+        "building": true,
+        "label": true,
+        "land": true,
+        "road": true,
+        "water": true
+      },
+      "threeDBuildingColor": [
+        9.665468314072013,
+        17.18305478057247,
+        31.1442867897876
+      ],
+      "mapStyles": {}
+    }
+  }
+}
