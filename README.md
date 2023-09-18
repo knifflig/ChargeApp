@@ -54,3 +54,10 @@ description:
 - differences become clear when we look at two cities which are in the same regional context but show completly different patterns
 - while in Stuttgart aproximatly 750 charging stations  available for there 600k inhabitants Frankfurt have only 222 for 750k citizen
 
+![Stuttgart](src/data/img/stuttgart_map.jpeg)
+![Frankfurt](src/data/img/frankfurt_map.jpeg)
+
+
+![Citizen](src/data/img/citizen.png)
+![Stations](src/data/img/stations.png)
+![Citizen per Station](src/data/img/cit_per_sta.png)
