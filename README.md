@@ -48,11 +48,33 @@ description:
         - periodic fluctuations
 
 
+
+![](/workspaces/python3-poetry-pyenv/src/app/app_files/example.svg)
+
+
 ## Predicting Regional Demand
 
 - The ladestation-api [](https://github.com/bundesAPI/ladestationen-api) provided by the german gouvernment provides at the moment 46,196 stations which is not the full sample but will be enough to provide major insight
 - differences become clear when we look at two cities which are in the same regional context but show completly different patterns
 - while in Stuttgart aproximatly 750 charging stations  available for there 600k inhabitants Frankfurt have only 222 for 750k citizen
+
+<div class="image-container">
+  <img src="../data/img/stuttgart_map.jpeg" alt="Map of Flensburg" class="center-image" height="300">
+  <img src="../data/img/frankfurt_map.jpeg" alt="Map of Hamburg" class="center-image" height="300">
+</div>
+
+<style>
+.image-container {
+  text-align: center;
+}
+
+/* or alternatively using flexbox */
+.image-container {
+  display: flex;
+  justify-content: center;
+}
+</style>
+
 
 ![Stuttgart](src/data/img/stuttgart_map.jpeg)
 ![Frankfurt](src/data/img/frankfurt_map.jpeg)
